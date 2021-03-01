@@ -1,0 +1,28 @@
+C:\Users\Fikret Cansel\source\repos\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.csprojAssemblyReference.cache
+C:\Users\Fikret Cansel\source\repos\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfoInputs.cache
+C:\Users\Fikret Cansel\source\repos\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfo.cs
+C:\Users\Fikret Cansel\source\repos\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Fikret Cansel\source\repos\ReCapProject\DataAccess\bin\Debug\netstandard2.0\DataAccess.deps.json
+C:\Users\Fikret Cansel\source\repos\ReCapProject\DataAccess\bin\Debug\netstandard2.0\DataAccess.dll
+C:\Users\Fikret Cansel\source\repos\ReCapProject\DataAccess\bin\Debug\netstandard2.0\DataAccess.pdb
+C:\Users\Fikret Cansel\source\repos\ReCapProject\DataAccess\bin\Debug\netstandard2.0\Entities.dll
+C:\Users\Fikret Cansel\source\repos\ReCapProject\DataAccess\bin\Debug\netstandard2.0\Entities.pdb
+C:\Users\Fikret Cansel\source\repos\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.CopyComplete
+C:\Users\Fikret Cansel\source\repos\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.dll
+C:\Users\Fikret Cansel\source\repos\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.pdb
+C:\Users\Fikret Cansel\source\repos\ReCapProject\DataAccess\bin\Debug\netstandard2.0\Core.dll
+C:\Users\Fikret Cansel\source\repos\ReCapProject\DataAccess\bin\Debug\netstandard2.0\Core.pdb
+A:\source\repos\ReCapProject\DataAccess\bin\Debug\netstandard2.0\DataAccess.deps.json
+A:\source\repos\ReCapProject\DataAccess\bin\Debug\netstandard2.0\DataAccess.dll
+A:\source\repos\ReCapProject\DataAccess\bin\Debug\netstandard2.0\DataAccess.pdb
+A:\source\repos\ReCapProject\DataAccess\bin\Debug\netstandard2.0\Core.dll
+A:\source\repos\ReCapProject\DataAccess\bin\Debug\netstandard2.0\Entities.dll
+A:\source\repos\ReCapProject\DataAccess\bin\Debug\netstandard2.0\Core.pdb
+A:\source\repos\ReCapProject\DataAccess\bin\Debug\netstandard2.0\Entities.pdb
+A:\source\repos\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.csprojAssemblyReference.cache
+A:\source\repos\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfoInputs.cache
+A:\source\repos\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfo.cs
+A:\source\repos\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.CoreCompileInputs.cache
+A:\source\repos\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.CopyComplete
+A:\source\repos\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.dll
+A:\source\repos\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.pdb

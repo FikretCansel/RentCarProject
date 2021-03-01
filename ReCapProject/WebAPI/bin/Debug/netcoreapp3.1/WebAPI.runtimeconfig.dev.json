@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\fikre\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\fikre\\.nuget\\packages"
+    ]
+  }
+}
