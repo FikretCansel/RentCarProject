@@ -22,9 +22,6 @@ namespace Business.Concrete
             _userService = userService;
             _tokenHelper = tokenHelper;
         }
-        
-
-
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
         {
 

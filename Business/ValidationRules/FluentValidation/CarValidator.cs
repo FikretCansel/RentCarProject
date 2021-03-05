@@ -14,7 +14,7 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(x => x.Name).NotEmpty();
             RuleFor(x => x.DailyPrice).GreaterThan(0);
             RuleFor(x => x.BrandId).NotEmpty();
-            RuleFor(x => x.Name).Must(LengthRule);
+            //RuleFor(x => x.Name).Must(LengthRule);
         }
 
         private bool LengthRule(string arg)
