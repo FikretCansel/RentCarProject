@@ -13,6 +13,7 @@ using Business.ValidationRules.FluentValidation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Aspects.Autofac.Validation;
 using Business.BusinessAspects.Autofac;
+using Core.Aspects.Autofac.Caching;
 
 namespace Business.Concrete
 {
@@ -54,7 +55,7 @@ namespace Business.Concrete
             _carDal.Delete(car);
             return new SuccessResult(Messages.Deleted);
         }
-
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour == 17)

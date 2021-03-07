@@ -12,6 +12,7 @@ using System.Linq.Expressions;
 using Core.CrossCuttingConcerns.Validation;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Aspects.Autofac.Caching;
 
 namespace Business.Concrete
 {
@@ -24,6 +25,7 @@ namespace Business.Concrete
             _rentalDal = rentalDal;
         }
         [ValidationAspect(typeof(RentalValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Rental rental)
         {
 
