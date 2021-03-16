@@ -6,6 +6,7 @@ using Core.Utilities.Business;
 using Core.Utilities.FileHelper;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using Entities;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -84,6 +85,12 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.MuchImageError);
             }
             return new SuccessResult();
+        }
+
+        public IDataResult<List<CarImage>> Get(int carId)
+        {
+            var result = _carImageDal.GetAll(c => c.CarId == carId);
+            return new SuccessDataResult<List<CarImage>>(result,Messages.Listed);
         }
     }
 }

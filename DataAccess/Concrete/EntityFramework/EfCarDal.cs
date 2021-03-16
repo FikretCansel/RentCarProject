@@ -28,20 +28,48 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
-        public List<AllCarDetailsDto> GetAllCarDetails()
+        public List<AllCarDetailsDto> GetAllCarDetails(Expression<Func<AllCarDetailsDto, bool>> filter = null)
         {
-            using (CarRecapContext context=new CarRecapContext())
+                using (CarRecapContext context = new CarRecapContext())
+                {
+                    var result = from car in context.Cars
+                                 join br in context.Brands on car.BrandId equals br.Id
+                                 join cl in context.Colors on car.ColorId equals cl.Id
+                                 select new AllCarDetailsDto
+                                 {
+                                     CarId = car.Id,
+                                     BrandId=car.BrandId,
+                                     CarName = car.Name,
+                                     BrandName = br.Name,
+                                     ColorName = cl.Name,
+                                     DailyPrice = car.DailyPrice,
+                                     ModelYear = car.ModelYear,
+                                     Description = car.Description
+                                 };
+                return filter == null ? result.ToList() : result.Where(filter).ToList();
+            }
+        }    
+
+        public AllCarDetailsDto GetOneCarDetail(int carId)
+        {
+            using (CarRecapContext context = new CarRecapContext())
             {
-                var result = from car in context.Cars join br in context.Brands on car.Id equals br.Id join cl in
-                    context.Colors on car.Id equals cl.Id
+                var result = from car in context.Cars
+                             join br in context.Brands on car.BrandId equals br.Id
+                             join cl in
+                             context.Colors on car.ColorId equals cl.Id
+                             where carId == car.Id
                              select new AllCarDetailsDto
                              {
                                  CarId = car.Id,
+                                 CarName = car.Name,
                                  BrandName = br.Name,
                                  ColorName = cl.Name,
-                                 DailyPrice = car.DailyPrice
+                                 DailyPrice = car.DailyPrice,
+                                 ModelYear = car.ModelYear,
+                                 Description = car.Description
                              };
-                return result.ToList();
+                return result.SingleOrDefault();
             }
         }
     }

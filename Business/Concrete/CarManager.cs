@@ -20,26 +20,17 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
+        ICarImageService _carImageService;
 
-        public CarManager(ICarDal carDal)
+        public CarManager(ICarDal carDal, ICarImageService carImageService)
         {
             _carDal = carDal;
+            _carImageService = carImageService;
         }
         [SecuredOperation("admin")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-
-            //var context = new ValidationContext<Car>(car);
-            //CarValidator carValidator = new CarValidator();
-            //var result = carValidator.Validate(context);
-            //if (!result.IsValid)
-            //{
-            //    throw new ValidationException(result.Errors);
-            //}
-
-
-            //ValidationTool.Validate(new CarValidator(), car);
 
             _carDal.Add(car);
             return new SuccessResult(Messages.Added);
@@ -58,12 +49,7 @@ namespace Business.Concrete
         [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
-            if (DateTime.Now.Hour == 17)
-            {
-                return new ErrorDataResult<List<Car>>(Messages.Maintenance);
-            }
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.Listed);
-            
+           return new ErrorDataResult<List<Car>>(Messages.Maintenance); 
         }
 
         public IDataResult<List<CarDetailsDto>> GetCarDetails()
@@ -75,6 +61,34 @@ namespace Business.Concrete
         {
             _carDal.Update(car);
             return new SuccessResult(Messages.Updated);
+        }
+
+
+        public IDataResult<AllCarDetailsDto> GetCarAllInfo(int carId)
+        {
+            var carResult = _carDal.GetOneCarDetail(carId);
+            var carImages = _carImageService.Get(carId);
+
+            AllCarDetailsDto allCarDetailsDto = new AllCarDetailsDto
+            {
+                CarId = carResult.CarId,
+                BrandName = carResult.BrandName,
+                CarName = carResult.CarName,
+                ColorName = carResult.ColorName,
+                DailyPrice = carResult.DailyPrice,
+                Description = carResult.Description,
+                ModelYear = carResult.ModelYear,
+                CarImages = carImages.Data
+            };
+
+            return new SuccessDataResult<AllCarDetailsDto>(allCarDetailsDto, Messages.Listed);
+
+        }
+
+        public IDataResult<List<AllCarDetailsDto>> GetByBrand(int brandId)
+        {
+            var result = _carDal.GetAllCarDetails(c => c.BrandId == brandId);
+            return new SuccessDataResult<List<AllCarDetailsDto>>(result, Messages.Listed);
         }
     }
 }

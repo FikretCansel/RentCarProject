@@ -1,0 +1,1 @@
+﻿Create Table Brands (Id int Identity(1,1),Name varchar(50))

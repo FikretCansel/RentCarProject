@@ -4,6 +4,7 @@ using System.Text;
 using Entities;
 using Core.DataAccess;
 using Entities.Concrete;
+using System.Linq.Expressions;
 
 namespace DataAccess.Abstract
 {
@@ -11,6 +12,9 @@ namespace DataAccess.Abstract
     {
         List<CarDetailsDto> GetCarDetails();
 
-        List<AllCarDetailsDto> GetAllCarDetails();
+        List<AllCarDetailsDto> GetAllCarDetails(Expression<Func<AllCarDetailsDto, bool>> filter = null);
+
+        AllCarDetailsDto GetOneCarDetail(int carId);
+
     }
 }
