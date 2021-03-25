@@ -10,9 +10,10 @@ namespace Business.ValidationRules.FluentValidation
     {
         public RentalValidator()
         {
-            RuleFor(x => x.CarId).GreaterThan(1900);
-            RuleFor(x => x.CustomerId).NotEmpty();
             RuleFor(x => x.Id).NotNull();
+            RuleFor(x => x.FirstAndLastName).NotEmpty().WithMessage("isim girmek zorunludur");
+            RuleFor(x => x.ReturnDate).GreaterThan(x => x.RentDate);
+            RuleFor(x => x.CarId).NotNull();
         }
     }
 }

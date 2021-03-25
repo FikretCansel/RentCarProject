@@ -16,7 +16,7 @@ namespace Business.Constants
         public static string AddErrorfromRent = "Araç zaten kiralanmış";
         public static string MuchImageError = "Bir araba için fazla 5 resim eklebilirsiniz";
         public static string UserRegistered = "Kullanıcı başarı ile eklendi";
-        internal static string SuccessfulLogin="Başarı ile giriş yapıldı";
+        public static string SuccessfulLogin="Başarı ile giriş yapıldı";
         public static string PasswordError = "Şifre Hatalı";
 
         public static string AccessToken = "Access token oluşturuldu";
@@ -25,5 +25,9 @@ namespace Business.Constants
         public static string AuthorizationDenied = "Yetkiniz Yok";
 
         public static string AccessTokenCreated = "Token oluşturuldu";
+        public static string Rentable = "Bu aracı kiralabilirsiniz";
+        public static string noRentable = "Bu tarihler arası zaten bu araç kiralanmış";
+        public static string PastHistoryError = "Bu Tarih Geçmiş.Lütfen Geçerli Bir Tarih Giriniz";
+        public static string SuccessRental = "Başarı ile Aracınız Kiralanmıştır";
     }
 }

@@ -19,10 +19,15 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from c in context.Cars
                              join b in context.Brands on c.BrandId equals b.Id
+                             join co in context.Colors on c.ColorId equals co.Id
                              select new CarDetailsDto
                              {
                                  CarId = c.Id,
                                  BrandName = b.Name,
+                                 ColorName=co.Name,
+                                 CarName=c.Name,
+                                 DailyPrice=c.DailyPrice,
+                                 ModelYear=c.ModelYear,
                                  Description = c.Description
                              };
                 return result.ToList();
@@ -39,6 +44,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  {
                                      CarId = car.Id,
                                      BrandId=car.BrandId,
+                                     ColorId = car.ColorId,
                                      CarName = car.Name,
                                      BrandName = br.Name,
                                      ColorName = cl.Name,
@@ -50,7 +56,7 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }    
 
-        public AllCarDetailsDto GetOneCarDetail(int carId)
+        public CarDetailsDto GetOneCarDetail(int carId)
         {
             using (CarRecapContext context = new CarRecapContext())
             {
@@ -59,7 +65,7 @@ namespace DataAccess.Concrete.EntityFramework
                              join cl in
                              context.Colors on car.ColorId equals cl.Id
                              where carId == car.Id
-                             select new AllCarDetailsDto
+                             select new CarDetailsDto
                              {
                                  CarId = car.Id,
                                  CarName = car.Name,

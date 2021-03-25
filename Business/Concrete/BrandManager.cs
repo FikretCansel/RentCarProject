@@ -22,15 +22,11 @@ namespace Business.Concrete
             _brandDal.Add(brand);
             return new SuccessResult(Messages.Added);
         }
-
-        
-
         public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);
             return new SuccessResult(Messages.Deleted);
         }
-
         public IDataResult<List<Brand>> GetAll()
         {
             return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(), Messages.Listed);

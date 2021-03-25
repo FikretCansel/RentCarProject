@@ -1,1 +1,1 @@
-﻿Create Table Brands (Id int Identity(1,1),Name varchar(50))
+﻿create table Rentals (Id int Identity(1,1),CarId int,FirstAndLastName varchar(60),RentDate DateTime,ReturnDate DateTime)

@@ -14,6 +14,7 @@ using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Aspects.Autofac.Caching;
 using Entities.DTO;
+using Core.Aspects.Autofac.Transaction;
 
 namespace Business.Concrete
 {
@@ -64,6 +65,33 @@ namespace Business.Concrete
         {
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.Updated);
+        }
+        public IResult IsRentable(DateTime rentDate,DateTime returnDate,int carId)
+        {
+            var rentHistory=_rentalDal.GetAll(r => r.CarId == carId);
+            if (rentDate < DateTime.Now || returnDate < DateTime.Now)
+            {
+                return new ErrorResult(Messages.PastHistoryError);
+            }
+            foreach (var history in rentHistory)
+            {
+                if (rentDate>=history.RentDate && rentDate<history.ReturnDate || rentDate < DateTime.Now)
+                {
+                    return new ErrorResult(Messages.noRentable);
+                }
+            }
+            return new SuccessResult(Messages.Rentable);
+        }
+        [ValidationAspect(typeof(RentalValidator))]
+        public IResult CheckRentableAndRental(Rental rental)
+        {
+            var rentability = IsRentable(rental.RentDate, rental.ReturnDate, rental.CarId);
+            if (!rentability.Success)
+            {
+                return new ErrorResult(rentability.Message);
+            }
+            _rentalDal.Add(rental);
+            return new SuccessResult(Messages.SuccessRental);
         }
     }
 }
