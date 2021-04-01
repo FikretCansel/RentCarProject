@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
+using Core.Utilities.Results;
 using Entities.DTO;
 using Microsoft.AspNetCore.Mvc;
-
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -25,16 +25,23 @@ namespace WebAPI.Controllers
             var userToLogin = _authService.Login(userForLoginDto);
             if (!userToLogin.Success)
             {
-                return BadRequest(userToLogin.Message);
+                return BadRequest(userToLogin);
             }
 
-            var result = _authService.CreateAccessToken(userToLogin.Data);
-            if (result.Success)
+            var tokenResult = _authService.CreateAccessToken(userToLogin.Data);
+            if (!tokenResult.Success)
             {
-                return Ok(result.Data);
+                return BadRequest(tokenResult);
             }
-
-            return BadRequest(result.Message);
+            AuthDto authDto = new AuthDto
+            {
+                FirstName = userToLogin.Data.FirstName,
+                LastName = userToLogin.Data.LastName,
+                Token = tokenResult.Data.Token,
+                Expiration = tokenResult.Data.Expiration,
+            };
+            var result = new SuccessDataResult<AuthDto>(authDto, userToLogin.Message);
+            return Ok(result);
         }
 
         [HttpPost("register")]
@@ -43,17 +50,26 @@ namespace WebAPI.Controllers
             var userExists = _authService.UserExists(userForRegisterDto.Email);
             if (!userExists.Success)
             {
-                return BadRequest(userExists.Message);
+                return BadRequest(userExists);
             }
 
             var registerResult = _authService.Register(userForRegisterDto, userForRegisterDto.Password);
-            var result = _authService.CreateAccessToken(registerResult.Data);
-            if (result.Success)
+            var tokenResult = _authService.CreateAccessToken(registerResult.Data);
+            if (!tokenResult.Success)
             {
-                return Ok(result.Data);
+                return BadRequest(tokenResult);
             }
 
-            return BadRequest(result.Message);
+            AuthDto authDto = new AuthDto
+            {
+                FirstName = registerResult.Data.FirstName,
+                LastName = registerResult.Data.LastName,
+                Token = tokenResult.Data.Token,
+                Expiration = tokenResult.Data.Expiration,
+                Message = registerResult.Message
+            };
+            var result = new SuccessDataResult<AuthDto>(authDto);
+            return Ok(result);
         }
     }
 }
