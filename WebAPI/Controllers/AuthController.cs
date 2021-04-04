@@ -35,6 +35,7 @@ namespace WebAPI.Controllers
             }
             AuthDto authDto = new AuthDto
             {
+                UserId=userToLogin.Data.Id,
                 FirstName = userToLogin.Data.FirstName,
                 LastName = userToLogin.Data.LastName,
                 Token = tokenResult.Data.Token,
@@ -59,16 +60,21 @@ namespace WebAPI.Controllers
             {
                 return BadRequest(tokenResult);
             }
-
+            var loginDto = new UserForLoginDto
+            {
+                Email = userForRegisterDto.Email,
+                Password = userForRegisterDto.Password
+            };
+            var userToLogin = _authService.Login(loginDto).Data.Id;
             AuthDto authDto = new AuthDto
             {
+                UserId=userToLogin,
                 FirstName = registerResult.Data.FirstName,
                 LastName = registerResult.Data.LastName,
                 Token = tokenResult.Data.Token,
-                Expiration = tokenResult.Data.Expiration,
-                Message = registerResult.Message
+                Expiration = tokenResult.Data.Expiration
             };
-            var result = new SuccessDataResult<AuthDto>(authDto);
+            var result = new SuccessDataResult<AuthDto>(authDto,registerResult.Message);
             return Ok(result);
         }
     }

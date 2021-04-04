@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Entities.DTO;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -21,6 +22,16 @@ namespace DataAccess.Concrete.EntityFramework
                              select new OperationClaim { Id = operationClaim.Id, Name = operationClaim.Name };
                 return result.ToList();
 
+            }
+        }
+        public void UpdateFullName(User user)
+        {
+            using (var context = new CarRecapContext())
+            {
+                context.Users.Attach(user);
+                context.Entry(user).Property(x => x.FirstName).IsModified = true;
+                context.Entry(user).Property(x => x.LastName).IsModified = true;
+                context.SaveChanges();
             }
         }
     }

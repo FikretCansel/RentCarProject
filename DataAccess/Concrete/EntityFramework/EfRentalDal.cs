@@ -24,7 +24,6 @@ namespace DataAccess.Concrete.EntityFramework
                              {
                                 CarId=car.Id,
                                 BrandName=br.Name,
-                                FirstAndLastName=rental.FirstAndLastName,
                                 RentDate=rental.RentDate,
                                 ReturnDate=rental.ReturnDate,
                                 TotalRentPrice = rental.TotalRentPrice

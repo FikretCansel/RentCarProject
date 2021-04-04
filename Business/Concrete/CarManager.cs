@@ -45,10 +45,10 @@ namespace Business.Concrete
             _carDal.Delete(car);
             return new SuccessResult(Messages.Deleted);
         }
-        [CacheAspect]
+        
         public IDataResult<List<Car>> GetAll()
         {
-           return new ErrorDataResult<List<Car>>(Messages.Maintenance); 
+           return new ErrorDataResult<List<Car>>(_carDal.GetAll(),Messages.Maintenance); 
         }
 
         public IDataResult<List<CarDetailsDto>> GetCarDetails()

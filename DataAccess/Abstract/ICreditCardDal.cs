@@ -6,10 +6,8 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface IUserDal:IEntityRepository<User>
+    public interface ICreditCardDal:IEntityRepository<CreditCard>
     {
-        List<OperationClaim> GetClaims(User user);
 
-        void UpdateFullName(User user);
     }
 }

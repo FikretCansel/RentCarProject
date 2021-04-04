@@ -31,7 +31,8 @@ namespace Business.DependencyResolver.Autofac
             builder.RegisterType<EfBrandDal>().As<IBrandDal>().SingleInstance();
             builder.RegisterType<ColorManager>().As<IColorService>().SingleInstance();
             builder.RegisterType<EfColorDal>().As<IColorDal>().SingleInstance();
-
+            builder.RegisterType<EfCreditCard>().As<ICreditCardDal>().SingleInstance();
+            builder.RegisterType<CreditCardManager>().As<ICreditCardService>().SingleInstance();
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
                 .EnableInterfaceInterceptors(new ProxyGenerationOptions()

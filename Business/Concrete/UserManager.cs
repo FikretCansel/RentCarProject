@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -16,9 +18,21 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
-        public void Add(User user)
+        public IResult Add(User user)
         {
             _userDal.Add(user);
+            return new SuccessResult(Messages.Deleted);
+        }
+
+        public IResult Delete(User user)
+        {
+            _userDal.Delete(user);
+            return new SuccessResult(Messages.Deleted);
+        }
+
+        public IDataResult<List<User>> GetAll()
+        {
+            throw new NotImplementedException();
         }
 
         public User GetByMail(string email)
@@ -30,5 +44,27 @@ namespace Business.Concrete
         {
             return _userDal.GetClaims(user);
         }
+
+        public IResult Update(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IResult UpdateEmail(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IResult UpdateFullName(User user)
+        {
+            _userDal.UpdateFullName(user);
+            return new SuccessResult(Messages.Updated);
+        }
+
+        public IResult UpdatePassword(User user)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
