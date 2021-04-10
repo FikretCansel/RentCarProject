@@ -29,5 +29,7 @@ namespace Business.Constants
         public static string noRentable = "Bu tarihler arası zaten bu araç kiralanmış";
         public static string PastHistoryError = "Bu Tarih Geçmiş.Lütfen Geçerli Bir Tarih Giriniz";
         public static string SuccessRental = "Başarı ile Aracınız Kiralanmıştır";
+        public static string NotFoundYourRental = "Kiralamanız Bulunmamaktadır";
+        public static string FoundedRental = "Kiralamalarınız Bulundu"; 
     }
 }

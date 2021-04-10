@@ -44,6 +44,15 @@ namespace Business.Concrete
             }
             else return new ErrorResult(Messages.AddErrorfromRent);
         }
+        public IDataResult<List<Rental>> GetUserRental(int UserId)
+        {
+            var result = _rentalDal.GetAll(r=>r.UserId==UserId);
+            if (result == null)
+            {
+                return new ErrorDataResult<List<Rental>>(Messages.NotFoundYourRental);
+            }
+            return new SuccessDataResult<List<Rental>>(result,Messages.FoundedRental);
+        }
 
         public IResult Delete(Rental rental)
         {
@@ -75,7 +84,7 @@ namespace Business.Concrete
             }
             foreach (var history in rentHistory)
             {
-                if (rentDate>=history.RentDate && rentDate<history.ReturnDate || rentDate < DateTime.Now)
+                if (rentDate>history.RentDate && rentDate<history.ReturnDate ||rentDate<=history.RentDate&&returnDate>history.RentDate)
                 {
                     return new ErrorResult(Messages.noRentable);
                 }

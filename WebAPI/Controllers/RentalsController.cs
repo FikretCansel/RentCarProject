@@ -70,6 +70,17 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("getuserental")]
+        public IActionResult Get(int UserId)
+        {
+            var result = _rentalManager.GetUserRental(UserId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpGet("isrentable")]
         public IActionResult IsRentable(DateTime rentDate, DateTime returnDate, int carId)
         {

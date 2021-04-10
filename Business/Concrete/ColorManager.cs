@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -17,6 +18,7 @@ namespace Business.Concrete
         {
             _colorDal = colorDal;
         }
+        [SecuredOperation("admin")]
         public IResult Add(Color color)
         {
             _colorDal.Add(color);
@@ -24,7 +26,7 @@ namespace Business.Concrete
         }
 
 
-
+        [SecuredOperation("admin")]
         public IResult Delete(Color color)
         {
             _colorDal.Delete(color);
@@ -35,6 +37,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.Listed);
         }
+        [SecuredOperation("admin")]
         public IResult Update(Color color)
         {
             _colorDal.Update(color);

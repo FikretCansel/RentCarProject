@@ -16,5 +16,6 @@ namespace Business.Abstract
         IDataResult<List<RentalDetailDto>> GetAllRentalDetails();
         IResult IsRentable(DateTime rentDate, DateTime returnDate, int carId);
         IResult CheckRentableAndRental(Rental rental);
+        IDataResult<List<Rental>> GetUserRental(int UserId);
     }
 }
